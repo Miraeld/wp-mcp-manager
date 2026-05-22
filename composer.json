@@ -1,0 +1,19 @@
+{
+    "name": "wpmedia/wp-mcp-manager",
+    "description": "Discover and manage MCP tools on your WordPress site",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.0",
+        "league/container": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "WPMedia\\McpManager\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
