@@ -3,7 +3,7 @@
  * Plugin Name: MCP Manager
  * Description: Discover and manage Model Context Protocol (MCP) tools available on your WordPress site. Surfaces the WordPress Abilities API for AI assistants.
  * Author:      Gaël Robin
- * Version:     0.1.0
+ * Version:     1.0.0
  * Requires at least: 6.9
  * Requires PHP: 8.0
  * Text Domain: mcp-manager

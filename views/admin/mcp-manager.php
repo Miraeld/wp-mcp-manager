@@ -102,7 +102,7 @@ $mcp_manager_site_url = get_site_url();
 <h1>
 	<span class="dashicons dashicons-rest-api" style="font-size:28px;width:28px;height:28px;color:#2271b1"></span>
 	<?php esc_html_e( 'MCP Manager', 'mcp-manager' ); ?>
-	<span class="mcp-version">v0.1.0</span>
+	<span class="mcp-version">v1.0.0</span>
 </h1>
 
 <!-- ── Status Bar ── -->
