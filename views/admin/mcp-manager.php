@@ -97,6 +97,10 @@ $mcp_manager_site_url = get_site_url();
 .mcp-categories-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f1; font-size: 13px; }
 .mcp-categories-table tr:last-child td { border-bottom: none; }
 .mcp-categories-table .cat-slug { font-family: monospace; font-size: 12px; color: #888; }
+
+/* OS selector buttons */
+.mcp-os-btn { padding: 5px 12px; font-size: 12px; cursor: pointer; }
+.mcp-os-btn.active { background: #2271b1; color: #fff; border-color: #2271b1; }
 </style>
 
 <h1>
@@ -382,7 +386,12 @@ $mcp_manager_site_url = get_site_url();
 			</div>
 			<div class="mcp-setup-card-body">
 				<p><?php esc_html_e( 'Edit your Claude Desktop configuration file:', 'mcp-manager' ); ?></p>
-				<code class="mcp-config-path">~/Library/Application Support/Claude/claude_desktop_config.json</code>
+				<div style="display:flex;gap:8px;margin-bottom:10px">
+					<button class="button mcp-os-btn" data-os="macos" data-path="~/Library/Application Support/Claude/claude_desktop_config.json"><?php esc_html_e( 'macOS', 'mcp-manager' ); ?></button>
+					<button class="button mcp-os-btn" data-os="windows" data-path="%APPDATA%\Claude\claude_desktop_config.json"><?php esc_html_e( 'Windows', 'mcp-manager' ); ?></button>
+					<button class="button mcp-os-btn" data-os="linux" data-path="~/.config/Claude/claude_desktop_config.json"><?php esc_html_e( 'Linux', 'mcp-manager' ); ?></button>
+				</div>
+				<code class="mcp-config-path mcp-claude-path">~/Library/Application Support/Claude/claude_desktop_config.json</code>
 				<p style="font-size:12px;color:#888"><?php echo esc_html( $mcp_manager_auth_note ); ?></p>
 				<div class="mcp-code-block">
 					<button class="button mcp-copy-code-btn" data-clipboard-code="<?php echo esc_attr( $mcp_manager_claude_config ); ?>">
@@ -401,7 +410,12 @@ $mcp_manager_site_url = get_site_url();
 			</div>
 			<div class="mcp-setup-card-body">
 				<p><?php esc_html_e( 'Edit your Cursor MCP configuration file:', 'mcp-manager' ); ?></p>
-				<code class="mcp-config-path">~/.cursor/mcp.json</code>
+				<div style="display:flex;gap:8px;margin-bottom:10px">
+					<button class="button mcp-os-btn" data-os="macos" data-path="~/Library/Application Support/Cursor/mcp.json"><?php esc_html_e( 'macOS', 'mcp-manager' ); ?></button>
+					<button class="button mcp-os-btn" data-os="windows" data-path="%APPDATA%\Cursor\mcp.json"><?php esc_html_e( 'Windows', 'mcp-manager' ); ?></button>
+					<button class="button mcp-os-btn" data-os="linux" data-path="~/.config/Cursor/mcp.json"><?php esc_html_e( 'Linux', 'mcp-manager' ); ?></button>
+				</div>
+				<code class="mcp-config-path mcp-cursor-path">~/.config/Cursor/mcp.json</code>
 				<p style="font-size:12px;color:#888"><?php echo esc_html( $mcp_manager_auth_note ); ?></p>
 				<div class="mcp-code-block">
 					<button class="button mcp-copy-code-btn" data-clipboard-code="<?php echo esc_attr( $mcp_manager_cursor_config ); ?>">
@@ -508,6 +522,46 @@ $mcp_manager_site_url = get_site_url();
 			copyText(btn.getAttribute('data-clipboard-code'), btn);
 		});
 	});
+
+	// Detect user OS.
+	function detectOS() {
+		var ua = navigator.userAgent;
+		if (ua.indexOf('Win') !== -1) return 'windows';
+		if (ua.indexOf('Mac') !== -1) return 'macos';
+		if (ua.indexOf('Linux') !== -1) return 'linux';
+		return 'macos';
+	}
+
+	// OS button switching.
+	function setupOSButtons(pathSelector) {
+		var pathEl = document.querySelector(pathSelector);
+		if (!pathEl) return;
+		var card = pathEl.closest('.mcp-setup-card');
+		var buttons = card.querySelectorAll('.mcp-os-btn');
+		var detectedOS = detectOS();
+		var activeOS = detectedOS;
+
+		// Set initial active state.
+		buttons.forEach(function(btn) {
+			if (btn.dataset.os === activeOS) {
+				btn.classList.add('active');
+				pathEl.textContent = btn.dataset.path;
+			}
+		});
+
+		// Handle button clicks.
+		buttons.forEach(function(btn) {
+			btn.addEventListener('click', function() {
+				buttons.forEach(function(b) { b.classList.remove('active'); });
+				btn.classList.add('active');
+				pathEl.textContent = btn.dataset.path;
+			});
+		});
+	}
+
+	// Initialize OS buttons for Claude and Cursor.
+	setupOSButtons('.mcp-claude-path');
+	setupOSButtons('.mcp-cursor-path');
 })();
 </script>
 

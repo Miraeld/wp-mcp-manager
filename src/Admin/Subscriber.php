@@ -2,13 +2,13 @@
 
 declare( strict_types = 1 );
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 namespace McpManager\Admin;
 
 use McpManager\Admin\Page\McpManagerPage;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class Subscriber {
 
