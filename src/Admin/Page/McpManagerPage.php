@@ -2,9 +2,9 @@
 
 declare( strict_types = 1 );
 
-namespace WPMedia\McpManager\Admin\Page;
+namespace McpManager\Admin\Page;
 
-use WPMedia\McpManager\Abilities\AbilityReader;
+use McpManager\Abilities\AbilityReader;
 
 class McpManagerPage {
 

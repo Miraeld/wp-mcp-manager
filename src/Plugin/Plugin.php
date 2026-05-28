@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace WPMedia\McpManager\Plugin;
+namespace McpManager\Plugin;
 
 use League\Container\Container;
 

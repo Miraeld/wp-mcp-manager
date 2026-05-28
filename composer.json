@@ -1,5 +1,5 @@
 {
-    "name": "wpmedia/wp-mcp-manager",
+    "name": "gaelrobin/mcp-manager",
     "description": "Discover and manage MCP tools on your WordPress site",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "WPMedia\\McpManager\\": "src/"
+            "McpManager\\": "src/"
         }
     },
     "config": {

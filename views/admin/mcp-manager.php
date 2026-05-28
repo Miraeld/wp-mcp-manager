@@ -19,14 +19,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$site_url = get_site_url();
+$mcp_manager_site_url = get_site_url();
 ?>
-<div class="wrap" id="wp-mcp-manager">
+<div class="wrap" id="mcp-manager">
 
 <style>
-#wp-mcp-manager { max-width: 1200px; }
-#wp-mcp-manager h1 { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-#wp-mcp-manager .mcp-version { font-size: 13px; color: #888; font-weight: normal; background: #f0f0f0; padding: 2px 8px; border-radius: 10px; }
+#mcp-manager { max-width: 1200px; }
+#mcp-manager h1 { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+#mcp-manager .mcp-version { font-size: 13px; color: #888; font-weight: normal; background: #f0f0f0; padding: 2px 8px; border-radius: 10px; }
 
 /* Status bar */
 .mcp-status-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 24px; }
@@ -101,34 +101,34 @@ $site_url = get_site_url();
 
 <h1>
 	<span class="dashicons dashicons-rest-api" style="font-size:28px;width:28px;height:28px;color:#2271b1"></span>
-	<?php esc_html_e( 'WP MCP Manager', 'wp-mcp-manager' ); ?>
-	<span class="mcp-version">v0.1.0 PoC</span>
+	<?php esc_html_e( 'MCP Manager', 'mcp-manager' ); ?>
+	<span class="mcp-version">v0.1.0</span>
 </h1>
 
 <!-- ── Status Bar ── -->
 <div class="mcp-status-bar">
 
 	<div class="mcp-status-card <?php echo $has_api ? 'card-ok' : 'card-warn'; ?>">
-		<div class="card-title"><?php esc_html_e( 'Abilities API', 'wp-mcp-manager' ); ?></div>
+		<div class="card-title"><?php esc_html_e( 'Abilities API', 'mcp-manager' ); ?></div>
 		<div class="card-value">
 			<?php if ( $has_api ) : ?>
 				<span class="dashicons dashicons-yes-alt mcp-badge-ok"></span>
 				<?php
 				printf(
 					/* translators: %s: WordPress version */
-					esc_html__( 'WordPress %s', 'wp-mcp-manager' ),
+					esc_html__( 'WordPress %s', 'mcp-manager' ),
 					esc_html( $wp_version )
 				);
 				?>
 			<?php else : ?>
 				<span class="dashicons dashicons-warning mcp-badge-warn"></span>
-				<?php esc_html_e( 'Requires WP 6.9+', 'wp-mcp-manager' ); ?>
+				<?php esc_html_e( 'Requires WP 6.9+', 'mcp-manager' ); ?>
 			<?php endif; ?>
 		</div>
 	</div>
 
 	<div class="mcp-status-card card-info">
-		<div class="card-title"><?php esc_html_e( 'Registered Tools', 'wp-mcp-manager' ); ?></div>
+		<div class="card-title"><?php esc_html_e( 'Registered Tools', 'mcp-manager' ); ?></div>
 		<div class="card-value">
 			<span class="dashicons dashicons-admin-tools"></span>
 			<?php echo esc_html( $total_count ); ?>
@@ -137,7 +137,7 @@ $site_url = get_site_url();
 				echo esc_html(
 					sprintf(
 						/* translators: %d: number of plugin namespaces */
-						_n( 'from %d plugin', 'from %d plugins', count( $abilities ), 'wp-mcp-manager' ),
+						_n( 'from %d plugin', 'from %d plugins', count( $abilities ), 'mcp-manager' ),
 						count( $abilities )
 					)
 				);
@@ -147,14 +147,14 @@ $site_url = get_site_url();
 	</div>
 
 	<div class="mcp-status-card <?php echo $has_adapter ? 'card-ok' : 'card-warn'; ?>">
-		<div class="card-title"><?php esc_html_e( 'MCP Adapter', 'wp-mcp-manager' ); ?></div>
+		<div class="card-title"><?php esc_html_e( 'MCP Adapter', 'mcp-manager' ); ?></div>
 		<div class="card-value">
 			<?php if ( $has_adapter ) : ?>
 				<span class="dashicons dashicons-yes-alt mcp-badge-ok"></span>
-				<?php esc_html_e( 'Detected', 'wp-mcp-manager' ); ?>
+				<?php esc_html_e( 'Detected', 'mcp-manager' ); ?>
 			<?php else : ?>
 				<span class="dashicons dashicons-warning mcp-badge-warn"></span>
-				<?php esc_html_e( 'Not installed', 'wp-mcp-manager' ); ?>
+				<?php esc_html_e( 'Not installed', 'mcp-manager' ); ?>
 			<?php endif; ?>
 		</div>
 	</div>
@@ -163,11 +163,11 @@ $site_url = get_site_url();
 
 <?php if ( $has_api ) : ?>
 <div class="mcp-status-card card-info" style="margin-bottom:24px">
-	<div class="card-title"><?php esc_html_e( 'REST Endpoint', 'wp-mcp-manager' ); ?></div>
+	<div class="card-title"><?php esc_html_e( 'REST Endpoint', 'mcp-manager' ); ?></div>
 	<div class="mcp-copy-wrap">
 		<code id="mcp-rest-url"><?php echo esc_html( $rest_url ); ?></code>
 		<button class="button button-secondary mcp-copy-btn" data-clipboard-target="#mcp-rest-url">
-			<?php esc_html_e( 'Copy', 'wp-mcp-manager' ); ?>
+			<?php esc_html_e( 'Copy', 'mcp-manager' ); ?>
 		</button>
 	</div>
 </div>
@@ -179,7 +179,7 @@ $site_url = get_site_url();
 		<?php
 		printf(
 			/* translators: %d: number of tools */
-			esc_html__( 'Tools (%d)', 'wp-mcp-manager' ),
+			esc_html__( 'Tools (%d)', 'mcp-manager' ),
 			(int) $total_count
 		);
 		?>
@@ -188,12 +188,12 @@ $site_url = get_site_url();
 		<?php
 		printf(
 			/* translators: %d: number of categories */
-			esc_html__( 'Categories (%d)', 'wp-mcp-manager' ),
+			esc_html__( 'Categories (%d)', 'mcp-manager' ),
 			count( $categories )
 		);
 		?>
 	</a>
-	<a href="#tab-setup"><?php esc_html_e( 'Setup Guide', 'wp-mcp-manager' ); ?></a>
+	<a href="#tab-setup"><?php esc_html_e( 'Setup Guide', 'mcp-manager' ); ?></a>
 </nav>
 
 <!-- ── Tools tab ── -->
@@ -201,23 +201,23 @@ $site_url = get_site_url();
 	<?php if ( empty( $abilities ) ) : ?>
 		<div class="mcp-empty">
 			<div class="dashicons dashicons-admin-tools"></div>
-			<p><?php esc_html_e( 'No abilities registered yet.', 'wp-mcp-manager' ); ?></p>
+			<p><?php esc_html_e( 'No abilities registered yet.', 'mcp-manager' ); ?></p>
 			<p style="font-size:13px">
-				<?php esc_html_e( 'Plugins register tools on the wp_abilities_api_init action. Try activating a plugin that uses the WP Abilities API.', 'wp-mcp-manager' ); ?>
+				<?php esc_html_e( 'Plugins register tools on the wp_abilities_api_init action. Try activating a plugin that uses the WP Abilities API.', 'mcp-manager' ); ?>
 			</p>
 		</div>
 	<?php else : ?>
-		<?php foreach ( $abilities as $namespace => $group ) : ?>
+		<?php foreach ( $abilities as $mcp_manager_namespace => $mcp_manager_group ) : ?>
 			<div class="mcp-group">
 				<div class="mcp-group-header">
-					<h2><?php echo esc_html( $group['label'] ); ?></h2>
+					<h2><?php echo esc_html( $mcp_manager_group['label'] ); ?></h2>
 					<span class="mcp-group-count">
 						<?php
 						echo esc_html(
 							sprintf(
 								/* translators: %d: number of tools */
-								_n( '%d tool', '%d tools', count( $group['abilities'] ), 'wp-mcp-manager' ),
-								count( $group['abilities'] )
+								_n( '%d tool', '%d tools', count( $mcp_manager_group['abilities'] ), 'mcp-manager' ),
+								count( $mcp_manager_group['abilities'] )
 							)
 						);
 						?>
@@ -225,31 +225,31 @@ $site_url = get_site_url();
 				</div>
 
 				<div class="mcp-abilities-grid">
-					<?php foreach ( $group['abilities'] as $ability ) : ?>
+					<?php foreach ( $mcp_manager_group['abilities'] as $mcp_manager_ability ) : ?>
 						<div class="mcp-ability-card">
-							<div class="mcp-ability-name"><?php echo esc_html( $ability['name'] ); ?></div>
-							<div class="mcp-ability-label"><?php echo esc_html( $ability['label'] ); ?></div>
-							<?php if ( $ability['description'] ) : ?>
-								<div class="mcp-ability-desc"><?php echo esc_html( $ability['description'] ); ?></div>
+							<div class="mcp-ability-name"><?php echo esc_html( $mcp_manager_ability['name'] ); ?></div>
+							<div class="mcp-ability-label"><?php echo esc_html( $mcp_manager_ability['label'] ); ?></div>
+							<?php if ( $mcp_manager_ability['description'] ) : ?>
+								<div class="mcp-ability-desc"><?php echo esc_html( $mcp_manager_ability['description'] ); ?></div>
 							<?php endif; ?>
 							<div class="mcp-ability-badges">
-								<?php if ( $ability['category'] ) : ?>
+								<?php if ( $mcp_manager_ability['category'] ) : ?>
 									<span class="mcp-badge mcp-badge-category">
-										<?php echo esc_html( $categories[ $ability['category'] ]['label'] ?? $ability['category'] ); ?>
+										<?php echo esc_html( $categories[ $mcp_manager_ability['category'] ]['label'] ?? $mcp_manager_ability['category'] ); ?>
 									</span>
 								<?php endif; ?>
-								<?php if ( $ability['show_in_rest'] ) : ?>
+								<?php if ( $mcp_manager_ability['show_in_rest'] ) : ?>
 									<span class="mcp-badge mcp-badge-rest">REST</span>
 								<?php endif; ?>
-								<?php if ( $ability['mcp_public'] ) : ?>
+								<?php if ( $mcp_manager_ability['mcp_public'] ) : ?>
 									<span class="mcp-badge mcp-badge-mcp">
-										<?php echo esc_html( 'mcp:' . $ability['mcp_type'] ); ?>
+										<?php echo esc_html( 'mcp:' . $mcp_manager_ability['mcp_type'] ); ?>
 									</span>
 								<?php endif; ?>
-								<?php if ( true === $ability['readonly'] ) : ?>
+								<?php if ( true === $mcp_manager_ability['readonly'] ) : ?>
 									<span class="mcp-badge mcp-badge-readonly">readonly</span>
 								<?php endif; ?>
-								<?php if ( true === $ability['destructive'] ) : ?>
+								<?php if ( true === $mcp_manager_ability['destructive'] ) : ?>
 									<span class="mcp-badge mcp-badge-destructive">destructive</span>
 								<?php endif; ?>
 							</div>
@@ -266,23 +266,23 @@ $site_url = get_site_url();
 	<?php if ( empty( $categories ) ) : ?>
 		<div class="mcp-empty">
 			<div class="dashicons dashicons-tag"></div>
-			<p><?php esc_html_e( 'No ability categories registered.', 'wp-mcp-manager' ); ?></p>
+			<p><?php esc_html_e( 'No ability categories registered.', 'mcp-manager' ); ?></p>
 		</div>
 	<?php else : ?>
 		<table class="mcp-categories-table">
 			<thead>
 				<tr>
-					<th><?php esc_html_e( 'Slug', 'wp-mcp-manager' ); ?></th>
-					<th><?php esc_html_e( 'Label', 'wp-mcp-manager' ); ?></th>
-					<th><?php esc_html_e( 'Description', 'wp-mcp-manager' ); ?></th>
+					<th><?php esc_html_e( 'Slug', 'mcp-manager' ); ?></th>
+					<th><?php esc_html_e( 'Label', 'mcp-manager' ); ?></th>
+					<th><?php esc_html_e( 'Description', 'mcp-manager' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ( $categories as $slug => $cat ) : ?>
+				<?php foreach ( $categories as $mcp_manager_slug => $mcp_manager_cat ) : ?>
 					<tr>
-						<td class="cat-slug"><?php echo esc_html( $slug ); ?></td>
-						<td><?php echo esc_html( $cat['label'] ); ?></td>
-						<td><?php echo esc_html( $cat['description'] ); ?></td>
+						<td class="cat-slug"><?php echo esc_html( $mcp_manager_slug ); ?></td>
+						<td><?php echo esc_html( $mcp_manager_cat['label'] ); ?></td>
+						<td><?php echo esc_html( $mcp_manager_cat['description'] ); ?></td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>
@@ -293,31 +293,30 @@ $site_url = get_site_url();
 <!-- ── Setup Guide tab ── -->
 <div id="tab-setup" class="mcp-tab-panel">
 	<p style="font-size:14px;color:#50575e;margin-top:0">
-		<?php esc_html_e( 'Connect your WordPress site to AI assistants that support the Model Context Protocol (MCP).', 'wp-mcp-manager' ); ?>
+		<?php esc_html_e( 'Connect your WordPress site to AI assistants that support the Model Context Protocol (MCP).', 'mcp-manager' ); ?>
 	</p>
 
 	<?php if ( ! $has_adapter ) : ?>
 		<div class="notice notice-warning inline" style="margin-bottom:20px">
 			<p>
-				<strong><?php esc_html_e( 'MCP Adapter not detected.', 'wp-mcp-manager' ); ?></strong>
-				<?php esc_html_e( 'Claude Desktop and Cursor use MCP over SSE, which requires a separate adapter. The configs below show what the setup would look like once the adapter is installed.', 'wp-mcp-manager' ); ?>
+				<strong><?php esc_html_e( 'MCP Adapter not detected.', 'mcp-manager' ); ?></strong>
+				<?php esc_html_e( 'Claude Desktop and Cursor use MCP over SSE, which requires a separate adapter. The configs below show what the setup would look like once the adapter is installed.', 'mcp-manager' ); ?>
 			</p>
 		</div>
 	<?php endif; ?>
 
 	<?php
-	$site_host       = wp_parse_url( $site_url, PHP_URL_HOST );
-	$mcp_sse_url     = $site_url . '/wp-json/mcp/v1/sse';
-	$abilities_url   = $rest_url;
+	$mcp_manager_sse_url      = $mcp_manager_site_url . '/wp-json/mcp/v1/sse';
+	$mcp_manager_abilities_url = $rest_url;
 
 	// Example auth header — in a real setup this would be an application password.
-	$auth_note = esc_html__( 'Replace with your WordPress Application Password (Users → Profile → Application Passwords).', 'wp-mcp-manager' );
+	$mcp_manager_auth_note = esc_html__( 'Replace with your WordPress Application Password (Users → Profile → Application Passwords).', 'mcp-manager' );
 
-	$claude_config = wp_json_encode(
+	$mcp_manager_claude_config = wp_json_encode(
 		[
 			'mcpServers' => [
 				'wordpress' => [
-					'url'     => $mcp_sse_url,
+					'url'     => $mcp_manager_sse_url,
 					'headers' => [
 						'Authorization' => 'Basic ' . base64_encode( 'your-username:xxxx-xxxx-xxxx-xxxx' ),
 					],
@@ -327,11 +326,11 @@ $site_url = get_site_url();
 		JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
 	);
 
-	$cursor_config = wp_json_encode(
+	$mcp_manager_cursor_config = wp_json_encode(
 		[
 			'mcpServers' => [
 				'wordpress' => [
-					'url'     => $mcp_sse_url,
+					'url'     => $mcp_manager_sse_url,
 					'headers' => [
 						'Authorization' => 'Basic ' . base64_encode( 'your-username:xxxx-xxxx-xxxx-xxxx' ),
 					],
@@ -341,13 +340,13 @@ $site_url = get_site_url();
 		JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
 	);
 
-	$vscode_config = wp_json_encode(
+	$mcp_manager_vscode_config = wp_json_encode(
 		[
 			'mcp' => [
 				'servers' => [
 					'wordpress' => [
 						'type'    => 'sse',
-						'url'     => $mcp_sse_url,
+						'url'     => $mcp_manager_sse_url,
 						'headers' => [
 							'Authorization' => 'Basic ' . base64_encode( 'your-username:xxxx-xxxx-xxxx-xxxx' ),
 						],
@@ -358,11 +357,11 @@ $site_url = get_site_url();
 		JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
 	);
 
-	$zed_config = wp_json_encode(
+	$mcp_manager_zed_config = wp_json_encode(
 		[
 			'context_servers' => [
 				'wordpress' => [
-					'url'     => $mcp_sse_url,
+					'url'     => $mcp_manager_sse_url,
 					'headers' => [
 						'Authorization' => 'Basic ' . base64_encode( 'your-username:xxxx-xxxx-xxxx-xxxx' ),
 					],
@@ -379,17 +378,17 @@ $site_url = get_site_url();
 		<div class="mcp-setup-card">
 			<div class="mcp-setup-card-header">
 				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#d97757"/><path d="M8 12h8M12 8v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-				<h3><?php esc_html_e( 'Claude Desktop', 'wp-mcp-manager' ); ?></h3>
+				<h3><?php esc_html_e( 'Claude Desktop', 'mcp-manager' ); ?></h3>
 			</div>
 			<div class="mcp-setup-card-body">
-				<p><?php esc_html_e( 'Edit your Claude Desktop configuration file:', 'wp-mcp-manager' ); ?></p>
+				<p><?php esc_html_e( 'Edit your Claude Desktop configuration file:', 'mcp-manager' ); ?></p>
 				<code class="mcp-config-path">~/Library/Application Support/Claude/claude_desktop_config.json</code>
-				<p style="font-size:12px;color:#888"><?php echo esc_html( $auth_note ); ?></p>
+				<p style="font-size:12px;color:#888"><?php echo esc_html( $mcp_manager_auth_note ); ?></p>
 				<div class="mcp-code-block">
-					<button class="button mcp-copy-code-btn" data-clipboard-code="<?php echo esc_attr( $claude_config ); ?>">
-						<?php esc_html_e( 'Copy', 'wp-mcp-manager' ); ?>
+					<button class="button mcp-copy-code-btn" data-clipboard-code="<?php echo esc_attr( $mcp_manager_claude_config ); ?>">
+						<?php esc_html_e( 'Copy', 'mcp-manager' ); ?>
 					</button>
-					<pre><?php echo esc_html( $claude_config ); ?></pre>
+					<pre><?php echo esc_html( $mcp_manager_claude_config ); ?></pre>
 				</div>
 			</div>
 		</div>
@@ -398,17 +397,17 @@ $site_url = get_site_url();
 		<div class="mcp-setup-card">
 			<div class="mcp-setup-card-header">
 				<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#1a1a1a"/><path d="M6 6l12 6-12 6V6z" fill="#fff"/></svg>
-				<h3><?php esc_html_e( 'Cursor', 'wp-mcp-manager' ); ?></h3>
+				<h3><?php esc_html_e( 'Cursor', 'mcp-manager' ); ?></h3>
 			</div>
 			<div class="mcp-setup-card-body">
-				<p><?php esc_html_e( 'Edit your Cursor MCP configuration file:', 'wp-mcp-manager' ); ?></p>
+				<p><?php esc_html_e( 'Edit your Cursor MCP configuration file:', 'mcp-manager' ); ?></p>
 				<code class="mcp-config-path">~/.cursor/mcp.json</code>
-				<p style="font-size:12px;color:#888"><?php echo esc_html( $auth_note ); ?></p>
+				<p style="font-size:12px;color:#888"><?php echo esc_html( $mcp_manager_auth_note ); ?></p>
 				<div class="mcp-code-block">
-					<button class="button mcp-copy-code-btn" data-clipboard-code="<?php echo esc_attr( $cursor_config ); ?>">
-						<?php esc_html_e( 'Copy', 'wp-mcp-manager' ); ?>
+					<button class="button mcp-copy-code-btn" data-clipboard-code="<?php echo esc_attr( $mcp_manager_cursor_config ); ?>">
+						<?php esc_html_e( 'Copy', 'mcp-manager' ); ?>
 					</button>
-					<pre><?php echo esc_html( $cursor_config ); ?></pre>
+					<pre><?php echo esc_html( $mcp_manager_cursor_config ); ?></pre>
 				</div>
 			</div>
 		</div>
@@ -417,17 +416,17 @@ $site_url = get_site_url();
 		<div class="mcp-setup-card">
 			<div class="mcp-setup-card-header">
 				<svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="#0065a9" d="M74.9 7.4L29.1 47.5 12 34.2 0 41v18l12 6.8 17.1-13.3 45.8 40.1L100 83.5V16.5L74.9 7.4z"/></svg>
-				<h3><?php esc_html_e( 'VS Code (GitHub Copilot)', 'wp-mcp-manager' ); ?></h3>
+				<h3><?php esc_html_e( 'VS Code (GitHub Copilot)', 'mcp-manager' ); ?></h3>
 			</div>
 			<div class="mcp-setup-card-body">
-				<p><?php esc_html_e( 'Add to your VS Code settings.json (workspace or user):', 'wp-mcp-manager' ); ?></p>
+				<p><?php esc_html_e( 'Add to your VS Code settings.json (workspace or user):', 'mcp-manager' ); ?></p>
 				<code class="mcp-config-path">.vscode/settings.json</code>
-				<p style="font-size:12px;color:#888"><?php echo esc_html( $auth_note ); ?></p>
+				<p style="font-size:12px;color:#888"><?php echo esc_html( $mcp_manager_auth_note ); ?></p>
 				<div class="mcp-code-block">
-					<button class="button mcp-copy-code-btn" data-clipboard-code="<?php echo esc_attr( $vscode_config ); ?>">
-						<?php esc_html_e( 'Copy', 'wp-mcp-manager' ); ?>
+					<button class="button mcp-copy-code-btn" data-clipboard-code="<?php echo esc_attr( $mcp_manager_vscode_config ); ?>">
+						<?php esc_html_e( 'Copy', 'mcp-manager' ); ?>
 					</button>
-					<pre><?php echo esc_html( $vscode_config ); ?></pre>
+					<pre><?php echo esc_html( $mcp_manager_vscode_config ); ?></pre>
 				</div>
 			</div>
 		</div>
@@ -436,17 +435,17 @@ $site_url = get_site_url();
 		<div class="mcp-setup-card">
 			<div class="mcp-setup-card-header">
 				<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#084cdf"/><text x="4" y="17" font-size="13" font-family="monospace" font-weight="bold" fill="#fff">Z</text></svg>
-				<h3><?php esc_html_e( 'Zed', 'wp-mcp-manager' ); ?></h3>
+				<h3><?php esc_html_e( 'Zed', 'mcp-manager' ); ?></h3>
 			</div>
 			<div class="mcp-setup-card-body">
-				<p><?php esc_html_e( 'Add to your Zed settings file:', 'wp-mcp-manager' ); ?></p>
+				<p><?php esc_html_e( 'Add to your Zed settings file:', 'mcp-manager' ); ?></p>
 				<code class="mcp-config-path">~/.config/zed/settings.json</code>
-				<p style="font-size:12px;color:#888"><?php echo esc_html( $auth_note ); ?></p>
+				<p style="font-size:12px;color:#888"><?php echo esc_html( $mcp_manager_auth_note ); ?></p>
 				<div class="mcp-code-block">
-					<button class="button mcp-copy-code-btn" data-clipboard-code="<?php echo esc_attr( $zed_config ); ?>">
-						<?php esc_html_e( 'Copy', 'wp-mcp-manager' ); ?>
+					<button class="button mcp-copy-code-btn" data-clipboard-code="<?php echo esc_attr( $mcp_manager_zed_config ); ?>">
+						<?php esc_html_e( 'Copy', 'mcp-manager' ); ?>
 					</button>
-					<pre><?php echo esc_html( $zed_config ); ?></pre>
+					<pre><?php echo esc_html( $mcp_manager_zed_config ); ?></pre>
 				</div>
 			</div>
 		</div>
@@ -454,16 +453,16 @@ $site_url = get_site_url();
 	</div><!-- .mcp-setup-grid -->
 
 	<div style="margin-top:28px;padding:16px;background:#f6f7f7;border-radius:6px;border:1px solid #e5e5e5">
-		<h3 style="margin-top:0"><?php esc_html_e( 'Available Tools', 'wp-mcp-manager' ); ?></h3>
+		<h3 style="margin-top:0"><?php esc_html_e( 'Available Tools', 'mcp-manager' ); ?></h3>
 		<p style="font-size:13px;color:#50575e">
-			<?php esc_html_e( 'Once connected, the following tools will be available to the AI assistant:', 'wp-mcp-manager' ); ?>
+			<?php esc_html_e( 'Once connected, the following tools will be available to the AI assistant:', 'mcp-manager' ); ?>
 		</p>
 		<ul style="margin:0;column-count:2;column-gap:32px">
-			<?php foreach ( $abilities as $ns_group ) : ?>
-				<?php foreach ( $ns_group['abilities'] as $ability ) : ?>
+			<?php foreach ( $abilities as $mcp_manager_ns_group ) : ?>
+				<?php foreach ( $mcp_manager_ns_group['abilities'] as $mcp_manager_ability ) : ?>
 					<li style="font-size:13px;margin-bottom:4px">
-						<code style="font-size:11px"><?php echo esc_html( $ability['name'] ); ?></code>
-						— <?php echo esc_html( $ability['label'] ); ?>
+						<code style="font-size:11px"><?php echo esc_html( $mcp_manager_ability['name'] ); ?></code>
+						— <?php echo esc_html( $mcp_manager_ability['label'] ); ?>
 					</li>
 				<?php endforeach; ?>
 			<?php endforeach; ?>
@@ -512,4 +511,4 @@ $site_url = get_site_url();
 })();
 </script>
 
-</div><!-- #wp-mcp-manager -->
+</div><!-- #mcp-manager -->

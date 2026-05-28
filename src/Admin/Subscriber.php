@@ -2,9 +2,13 @@
 
 declare( strict_types = 1 );
 
-namespace WPMedia\McpManager\Admin;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-use WPMedia\McpManager\Admin\Page\McpManagerPage;
+namespace McpManager\Admin;
+
+use McpManager\Admin\Page\McpManagerPage;
 
 class Subscriber {
 
@@ -20,10 +24,10 @@ class Subscriber {
 
 	public function add_menu(): void {
 		add_menu_page(
-			__( 'MCP Manager', 'wp-mcp-manager' ),
-			__( 'MCP Manager', 'wp-mcp-manager' ),
+			__( 'MCP Manager', 'mcp-manager' ),
+			__( 'MCP Manager', 'mcp-manager' ),
 			'manage_options',
-			'wp-mcp-manager',
+			'mcp-manager',
 			[ $this->page, 'render' ],
 			'dashicons-rest-api',
 			80

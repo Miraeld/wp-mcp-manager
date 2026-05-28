@@ -1,8 +1,6 @@
-# WP MCP Manager
+# MCP Manager
 
 A WordPress admin plugin that surfaces the [WordPress Abilities API](https://developer.wordpress.org/apis/abilities/) (introduced in WP 6.9) so site owners can discover and connect their AI tools.
-
-![WP MCP Manager screenshot](https://github.com/user-attachments/assets/placeholder)
 
 ## The problem
 
@@ -32,16 +30,16 @@ This plugin fills that gap.
 ## Installation
 
 ```bash
-git clone https://github.com/Miraeld/wp-mcp-manager.git
-cd wp-mcp-manager
+git clone https://github.com/Miraeld/mcp-manager.git
+cd mcp-manager
 composer install --no-dev
 ```
 
-Then activate **WP MCP Manager** from the WordPress Plugins screen. A new **MCP Manager** item appears in the admin sidebar.
+Then activate **MCP Manager** from the WordPress Plugins screen. A new **MCP Manager** item appears in the admin sidebar.
 
 ## Architecture
 
-Built with [League Container](https://container.thephpleague.com/) following the same patterns as production WP Media plugins:
+Built with [League Container](https://container.thephpleague.com/):
 
 ```
 src/
@@ -60,15 +58,7 @@ Each module is a service provider that declares what it provides and which subsc
 
 ## The bigger picture
 
-This plugin is a proof of concept for what WordPress core doesn't yet ship: a user-facing dashboard for the MCP ecosystem on your site.
-
-The Abilities API handles the **what** (which tools exist). A separate [MCP Adapter](https://github.com/WordPress/wordpress-develop) handles the **how** (serving those tools over SSE so AI clients can connect). This plugin handles the **who** (showing users what's there and how to connect).
-
-Think of it like the REST API screen in WP-CLI, but for AI assistants.
-
-## Status
-
-Proof of concept — built against WordPress 6.9 / 7.0 alpha. The Abilities API is marked `@since 6.9.0` in core. MCP adapter integration depends on `wordpress/mcp-adapter` being installed separately.
+The Abilities API handles the **what** (which tools exist). A separate MCP Adapter handles the **how** (serving those tools over SSE so AI clients can connect). This plugin handles the **who** (showing users what's there and how to connect).
 
 ## License
 

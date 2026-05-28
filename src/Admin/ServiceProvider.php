@@ -2,10 +2,10 @@
 
 declare( strict_types = 1 );
 
-namespace WPMedia\McpManager\Admin;
+namespace McpManager\Admin;
 
-use WPMedia\McpManager\Admin\Page\McpManagerPage;
-use WPMedia\McpManager\ServiceProvider\AbstractServiceProvider;
+use McpManager\Admin\Page\McpManagerPage;
+use McpManager\ServiceProvider\AbstractServiceProvider;
 
 class ServiceProvider extends AbstractServiceProvider {
 

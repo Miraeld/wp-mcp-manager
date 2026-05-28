@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace WPMedia\McpManager\Abilities;
+namespace McpManager\Abilities;
 
 class AbilityReader {
 

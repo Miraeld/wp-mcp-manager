@@ -2,7 +2,11 @@
 
 declare( strict_types = 1 );
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 return [
-	\WPMedia\McpManager\Abilities\ServiceProvider::class,
-	\WPMedia\McpManager\Admin\ServiceProvider::class,
+	\McpManager\Abilities\ServiceProvider::class,
+	\McpManager\Admin\ServiceProvider::class,
 ];

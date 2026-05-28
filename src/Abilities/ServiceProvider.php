@@ -2,9 +2,9 @@
 
 declare( strict_types = 1 );
 
-namespace WPMedia\McpManager\Abilities;
+namespace McpManager\Abilities;
 
-use WPMedia\McpManager\ServiceProvider\AbstractServiceProvider;
+use McpManager\ServiceProvider\AbstractServiceProvider;
 
 class ServiceProvider extends AbstractServiceProvider {
 

@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace WPMedia\McpManager\ServiceProvider;
+namespace McpManager\ServiceProvider;
 
 use League\Container\ServiceProvider\AbstractServiceProvider as LeagueAbstractServiceProvider;
 
